@@ -2,7 +2,7 @@ package maxbot
 
 import "github.com/max-messenger/max-bot-api-client-go/v2/model"
 
-type updateRaw struct {
+type UpdateRaw struct {
 	Timestamp  int64            `json:"timestamp"`
 	ChatID     int64            `json:"chat_id"`
 	UserID     int64            `json:"user_id"`
@@ -22,11 +22,11 @@ type updateRaw struct {
 }
 
 type updateList struct {
-	Updates []updateRaw `json:"updates"`
+	Updates []UpdateRaw `json:"updates"`
 	Marker  int64       `json:"marker"`
 }
 
-func (u updateRaw) FromRaw() model.Update {
+func (u UpdateRaw) FromRaw() model.Update {
 	update := model.Update{
 		Timestamp:  u.Timestamp,
 		UpdateType: u.UpdateType,
@@ -141,7 +141,7 @@ func (u updateRaw) FromRaw() model.Update {
 	return update
 }
 
-func (u updateRaw) senderFromRaw() model.Sender {
+func (u UpdateRaw) senderFromRaw() model.Sender {
 	return model.Sender{
 		UserID:           u.Message.Sender.UserID,
 		FirstName:        u.Message.Sender.FirstName,

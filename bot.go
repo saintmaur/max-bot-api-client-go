@@ -132,7 +132,7 @@ func (a *Api) GetHandler(handler UpdateHandler, secret string) http.HandlerFunc 
 			return
 		}
 
-		update := updateRaw{}
+		update := UpdateRaw{}
 		err = json.Unmarshal(body, &update)
 		if err != nil {
 			http.Error(w, "Failed to parse update", http.StatusBadRequest)
